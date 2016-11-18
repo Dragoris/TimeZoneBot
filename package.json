@@ -8,6 +8,7 @@
   "description": "returns time zone information for a given location",
 
   "dependencies": {
+    "@slack/client": "^3.4.0"
   },
 
   "engines": {
