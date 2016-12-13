@@ -21,7 +21,7 @@ module.exports = function(robot) {
                 var timeDiffrence = -8 - locationOffset // compaire your time (hr) to the location(hr)
                 var now = new Date();
                 msg.reply(now)
-                    now.setHours(now.getHours() + parseInt(JSON.parse(body).dstOffset + JSON.parse(body).rawOffset) *(-1)) //time at the location
+                    now.setHours(now.getHours() + parseInt((JSON.parse(body).dstOffset + JSON.parse(body).rawOffset *(-1)/3600)) //time at the location
                 var locationTime = now.toTimeString().split(' ').splice(0, 1).join(' ')
                 var locationDate = now.toDateString()
  
