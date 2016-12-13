@@ -4,9 +4,9 @@ module.exports = function(robot) {
         var dontHackMeBro = 'key=AIzaSyDmy8LB8rAh7mEt3GiISczhg3FGeYR3sng';
     	var splitMsgLength = msg.message.text.toString().split(' ').length //relient on user msg having proper spaces
     	var msgText = msg.message.text.toString().split(' ').splice(1,splitMsgLength) //removes bots name from begining of msg
-    	                                                                                       
+    	        
         //call google's API to turn the msg into lat/lng coordinates
-        return robot.http('https://maps.googleapis.com/maps/api/geocode/json?address=' + msgText.join('+') + dontHackMeBro)
+        return robot.http('https://maps.googleapis.com/maps/api/geocode/json?address=' + msgText.join('+') + '&' + dontHackMeBro)
      	.get()(function(err, res, body){ 
             var location = JSON.parse(body).results[0].geometry.location //parse out location info from the response
             var timeStamp = Date.now() / 1000; //returns a number of milliseconds, turn into seconds
