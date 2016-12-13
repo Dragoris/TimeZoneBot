@@ -20,8 +20,8 @@ module.exports = function(robot) {
                 //format time info to be output
                 var timeDiffrence = -8 - locationOffset // compaire your time (hr) to the location(hr)
                 var now = new Date();
-                console.log(now)
-                    now.setHours(now.getHours() + timeDiffrence *(-1)) //time at the location
+                msg.reply(now)
+                    //now.setHours(now.getHours() + timeDiffrence *(-1)) //time at the location
                 var locationTime = now.toTimeString().split(' ').splice(0, 1).join(' ')
                 var locationDate = now.toDateString()
  
@@ -37,7 +37,7 @@ module.exports = function(robot) {
                     aheadOrBehind = ' ahead of you.';
                     timeDiffrence = timeDiffrence * (-1);   
                 } else aheadOrBehind = ' behind you.';
-                
+               )
             //output string to the user  
             msg.reply('The current time in ' + msgText.join(' ') + ' is ' + locationTime + ' on ' + locationDate + '. They are in the ' + JSON.parse(body).timeZoneName + ' Zone, ' + timeDiffrence + ' ' + hr + aheadOrBehind)
             //get an image of the location
