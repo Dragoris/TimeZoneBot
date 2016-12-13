@@ -14,13 +14,11 @@ module.exports = function(robot) {
             return robot.http('https://maps.googleapis.com/maps/api/timezone/json?location='+ location.lat + ',' + location.lng + '&' + 'timestamp=' + timeStamp + '&' + dontHackMeBro)
             .get()(function(err, res, body){
                 //get time values from the response
-                msg.reply(parseInt(JSON.parse(body).dstOffset + JSON.parse(body).rawOffset))
                 var locationValue = timeStamp + JSON.parse(body).dstOffset + JSON.parse(body).rawOffset ;// location's time, per api docs
                 var locationOffset = (locationValue - timeStamp) / 3600;// location's UTC offset in hours
                 //format time info to be output
                 var timeDiffrence = -8 - locationOffset // compaire your time (hr) to the location(hr)
                 var now = new Date();
-                msg.reply(now)
                     now.setHours(now.getHours() + parseInt(JSON.parse(body).dstOffset + JSON.parse(body).rawOffset/3600)) //time at the location
                 var locationTime = now.toTimeString().split(' ').splice(0, 1).join(' ')
                 var locationDate = now.toDateString()
@@ -35,7 +33,7 @@ module.exports = function(robot) {
                 
                 if(timeDiffrence < 0) {//ahead vs behind
                     aheadOrBehind = ' ahead of you.';
-                    timeDiffrence = timeDiffrence * (-1);   
+                    timeDiffrence = timeDiffrence * (-1);
                 } else aheadOrBehind = ' behind you.';
                
             //output string to the user  
