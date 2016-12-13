@@ -14,11 +14,11 @@ module.exports = function(robot) {
             return robot.http('https://maps.googleapis.com/maps/api/timezone/json?location='+ location.lat + ',' + location.lng + '&' + 'timestamp=' + timeStamp + '&' + dontHackMeBro)
             .get()(function(err, res, body){
                 //get time values from the response
-                var userOffset = new Date().getTimezoneOffset() / 60 *(-1) //user's UTC offset in hours
+                
                 var locationValue = timeStamp + JSON.parse(body).dstOffset + JSON.parse(body).rawOffset ;// location's time, per api docs
                 var locationOffset = (locationValue - timeStamp) / 3600;// location's UTC offset in hours
                 //format time info to be output
-                var timeDiffrence = userOffset - locationOffset // compaire your time (hr) to the location(hr)
+                var timeDiffrence = -8 - locationOffset // compaire your time (hr) to the location(hr)
                 var now = new Date();
                 now.setHours(now.getHours() + timeDiffrence *(-1)) //time at the location
                 var locationTime = now.toTimeString().split(' ').splice(0, 1).join(' ')
