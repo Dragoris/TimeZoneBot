@@ -20,9 +20,10 @@ module.exports = function(robot) {
                 //format time info to be output
                 var timeDiffrence = -8 - locationOffset // compaire your time (hr) to the location(hr)
                 var now = new Date();
-                    now.setHours(now.getHours() +timeDiffrence) //time at the location
+                    now.setHours(now.getHours() + timeDiffrence *(-1)) //time at the location
                 var locationTime = now.toTimeString().split(' ').splice(0, 1).join(' ')
                 var locationDate = now.toDateString()
+                msg.reply('full',now.setHours(now.getHours() + timeDiffrence *(-1)).toTimeString(), 'now', now.toTimeString())
                 //string syntax fixing
                 var aheadOrBehind = '';
                 var hr = '';
