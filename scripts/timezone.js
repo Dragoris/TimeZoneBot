@@ -20,7 +20,7 @@ module.exports = function(robot) {
                 //format time info to be output
                 var timeDiffrence = -8 - locationOffset // compaire your time (hr) to the location(hr)
                 var now = new Date();
-                    now.setHours(now.getHours() + timeDiffrence *(-1)) //time at the location
+                    //now.setHours(now.getHours() + timeDiffrence *(-1)) //time at the location
                 var locationTime = now.toTimeString().split(' ').splice(0, 1).join(' ')
                 var locationDate = now.toDateString()
                 
@@ -38,7 +38,6 @@ module.exports = function(robot) {
                 } else aheadOrBehind = ' behind you.';
                 
             //output string to the user  
-            msg.reply(now, locationTime)  
             msg.reply('The current time in ' + msgText.join(' ') + ' is ' + locationTime + ' on ' + locationDate + '. They are in the ' + JSON.parse(body).timeZoneName + ' Zone, ' + timeDiffrence + ' ' + hr + aheadOrBehind)
             //get an image of the location
                 return robot.http('https://maps.googleapis.com/maps/api/staticmap?center=' + msgText.join('+') + '&zoom=10&size=400x400&v=3&' + dontHackMeBro)
