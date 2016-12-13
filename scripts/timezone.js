@@ -14,7 +14,7 @@ module.exports = function(robot) {
             return robot.http('https://maps.googleapis.com/maps/api/timezone/json?location='+ location.lat + ',' + location.lng + '&' + 'timestamp=' + timeStamp + '&' + dontHackMeBro)
             .get()(function(err, res, body){
                 //get time values from the response
-                msg.reply('body', JSON.parse(body).toString(), JSON.parse(body).dstOffset + JSON.parse(body).rawOffset)
+                msg.reply('body', parseInt(JSON.parse(body).dstOffset + JSON.parse(body).rawOffset))
                 var locationValue = timeStamp + JSON.parse(body).dstOffset + JSON.parse(body).rawOffset ;// location's time, per api docs
                 var locationOffset = (locationValue - timeStamp) / 3600;// location's UTC offset in hours
                 //format time info to be output
