@@ -37,7 +37,7 @@ module.exports = function(robot) {
                     aheadOrBehind = ' ahead of you.';
                     timeDiffrence = timeDiffrence * (-1);   
                 } else aheadOrBehind = ' behind you.';
-               )
+               
             //output string to the user  
             msg.reply('The current time in ' + msgText.join(' ') + ' is ' + locationTime + ' on ' + locationDate + '. They are in the ' + JSON.parse(body).timeZoneName + ' Zone, ' + timeDiffrence + ' ' + hr + aheadOrBehind)
             //get an image of the location
