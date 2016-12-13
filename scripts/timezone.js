@@ -23,7 +23,7 @@ module.exports = function(robot) {
                     //now.setHours(now.getHours() + timeDiffrence *(-1)) //time at the location
                 var locationTime = now.toTimeString().split(' ').splice(0, 1).join(' ')
                 var locationDate = now.toDateString()
-                
+                msg.reply('now',now, 'gH',now.getHours(), 'nD',new Date)
                 //string syntax fixing
                 var aheadOrBehind = '';
                 var hr = '';
